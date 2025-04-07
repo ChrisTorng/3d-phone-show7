@@ -12,6 +12,26 @@ const modelPaths = {
     'samsung_galaxy_s22_ultra': './models/samsung_galaxy_s22_ultra.glb',
     'samsung_galaxy_z_flip_3': './models/Samsung_Galaxy_Z_Flip_3.glb'
 };
+
+// 手機模型配置 JSON 結構
+const modelConfigurations = {
+    'iphone_16_pro_max': {
+        scale: { x: 2, y: 2, z: 2 },
+        position: { x: 0, y: 0, z: 0 },
+        rotation: { x: 0, y: Math.PI / 2, z: 0 } // 向右轉 90 度
+    },
+    'samsung_galaxy_s22_ultra': {
+        scale: { x: 1, y: 1, z: 1 },
+        position: { x: 0, y: -3, z: 0 },
+        rotation: { x: 0, y: 0, z: 0 } // 向右轉 90 度
+    },
+    'samsung_galaxy_z_flip_3': {
+        scale: { x: 2, y: 2, z: 2 },
+        position: { x: 0, y: 0, z: 0 },
+        rotation: { x: 0, y: 0, z: 0 } // 調整 Z Flip 的初始角度並向右轉 90 度
+    }
+};
+
 const containerElement = document.getElementById('phone-model-container');
 
 // 手機詳細規格資訊
@@ -130,11 +150,14 @@ function loadAllPhoneModels() {
             loader.load(
                 modelPath,
                 (gltf) => {
+                    // 獲取該模型的配置
+                    const config = modelConfigurations[modelName];
+                    
                     // 調整模型比例與位置
                     const model = gltf.scene;
-                    model.scale.set(2, 2, 2);
-                    model.position.set(0, -5, 0);
-                    model.rotation.set(0, 0, 0);
+                    model.scale.set(config.scale.x, config.scale.y, config.scale.z);
+                    model.position.set(config.position.x, config.position.y, config.position.z);
+                    model.rotation.set(config.rotation.x, config.rotation.y, config.rotation.z);
                     model.visible = false;
                     
                     // 存儲模型和添加到場景
@@ -206,8 +229,13 @@ function switchModel(event) {
         phoneModels[selectedModel].visible = true;
         currentModel = phoneModels[selectedModel];
         
-        // 重置位置和旋轉
-        currentModel.rotation.set(0, 0, 0);
+        // 取得模型配置
+        const config = modelConfigurations[selectedModel];
+        
+        // 套用模型配置中的旋轉設定，而不是完全重置
+        if (config && config.rotation) {
+            currentModel.rotation.set(config.rotation.x, config.rotation.y, config.rotation.z);
+        }
         
         // 根據不同的模型調整相機
         adjustCameraForModel(selectedModel);
