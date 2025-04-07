@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D 手機展示</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- 加入 importmap 來解決裸規範器問題 -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.157.0/build/three.module.js",
+          "three/examples/jsm/controls/OrbitControls": "https://unpkg.com/three@0.157.0/examples/jsm/controls/OrbitControls.js",
+          "three/examples/jsm/loaders/GLTFLoader": "https://unpkg.com/three@0.157.0/examples/jsm/loaders/GLTFLoader.js"
+        }
+      }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>3D 手機模型展示</h1>
+        </header>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label for="model-select">手機型號：</label>
+                <select id="model-select">
+                    <option value="iphone_16_pro_max">iPhone 16 Pro Max</option>
+                    <option value="samsung_galaxy_s22_ultra">Samsung Galaxy S22 Ultra</option>
+                    <option value="samsung_galaxy_z_flip_3">Samsung Galaxy Z Flip 3</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="color-picker">手機顏色：</label>
+                <input type="color" id="color-picker" value="#0080ff">
+            </div>
+            
+            <div class="control-group">
+                <button id="rotate-btn">旋轉展示</button>
+                <button id="stop-btn">停止旋轉</button>
+            </div>
+        </div>
+
+        <div id="phone-model-container"></div>
+        
+        <div class="phone-info">
+            <h2>手機資訊</h2>
+            <ul>
+                <li><strong>尺寸：</strong> 150 x 72 x 8.5 mm</li>
+                <li><strong>重量：</strong> 180g</li>
+                <li><strong>螢幕：</strong> 6.4 吋 OLED</li>
+                <li><strong>解析度：</strong> 2400 x 1080 像素</li>
+                <li><strong>相機：</strong> 4800 萬像素主鏡頭</li>
+            </ul>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
