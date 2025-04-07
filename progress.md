@@ -21,4 +21,5 @@ Uncaught TypeError: THREE.OrbitControls is not a constructor
    => 
 
 7. 請將手機資訊由下方移到右側，與手機模型並列，資訊面板用浮空模式。手機顏色選項刪除，旋轉展示/停止旋轉 鈕合併。
-   =>
+
+8. Samsung Galaxy S22 Ultra 這個手機顯示偏上，要怎麼調下來？

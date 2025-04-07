@@ -133,7 +133,7 @@ function loadAllPhoneModels() {
                     // 調整模型比例與位置
                     const model = gltf.scene;
                     model.scale.set(2, 2, 2);
-                    model.position.set(0, 0, 0);
+                    model.position.set(0, -5, 0);
                     model.rotation.set(0, 0, 0);
                     model.visible = false;
                     
