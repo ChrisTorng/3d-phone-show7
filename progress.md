@@ -19,3 +19,6 @@ Uncaught TypeError: THREE.OrbitControls is not a constructor
 
 6. 請依手機實際的型號，使用 playwright MCP 工具，由 google 搜尋它們的詳細規格，更新到網頁內。
    => 
+
+7. 請將手機資訊由下方移到右側，與手機模型並列，資訊面板用浮空模式。手機顏色選項刪除，旋轉展示/停止旋轉 鈕合併。
+   =>

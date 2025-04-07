@@ -83,15 +83,11 @@ function init() {
     // 設定視窗大小變更事件
     window.addEventListener('resize', onWindowResize);
     
-    // 設定顏色選擇器事件
-    document.getElementById('color-picker').addEventListener('input', updateModelColor);
-    
     // 設定模型選擇事件
     document.getElementById('model-select').addEventListener('change', switchModel);
     
-    // 設定按鈕事件
-    document.getElementById('rotate-btn').addEventListener('click', startRotation);
-    document.getElementById('stop-btn').addEventListener('click', stopRotation);
+    // 設定旋轉按鈕事件
+    document.getElementById('toggle-rotate-btn').addEventListener('click', toggleRotation);
 }
 
 // 加入光源
@@ -218,6 +214,10 @@ function switchModel(event) {
         
         // 更新手機規格資訊
         updatePhoneInfo(selectedModel);
+        
+        // 停止自動旋轉
+        autoRotate = false;
+        updateRotateButtonText();
     }
 }
 
@@ -247,37 +247,16 @@ function onWindowResize() {
     renderer.setSize(containerElement.clientWidth, containerElement.clientHeight);
 }
 
-// 更新模型顏色
-function updateModelColor(event) {
-    const newColor = event.target.value;
-    
-    if (currentModel) {
-        // 嘗試修改模型材質顏色
-        currentModel.traverse((child) => {
-            if (child.isMesh && child.material) {
-                // 如果是陣列材質
-                if (Array.isArray(child.material)) {
-                    child.material.forEach(material => {
-                        if (material.color) material.color.set(newColor);
-                    });
-                } 
-                // 如果是單一材質
-                else if (child.material.color) {
-                    child.material.color.set(newColor);
-                }
-            }
-        });
-    }
+// 切換旋轉狀態
+function toggleRotation() {
+    autoRotate = !autoRotate;
+    updateRotateButtonText();
 }
 
-// 開始旋轉模型
-function startRotation() {
-    autoRotate = true;
-}
-
-// 停止旋轉模型
-function stopRotation() {
-    autoRotate = false;
+// 更新旋轉按鈕文字
+function updateRotateButtonText() {
+    const rotateBtn = document.getElementById('toggle-rotate-btn');
+    rotateBtn.textContent = autoRotate ? '停止旋轉' : '旋轉展示';
 }
 
 // 動畫迴圈
