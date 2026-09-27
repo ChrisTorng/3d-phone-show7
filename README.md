@@ -3,7 +3,7 @@
 ## 連結
 
 - 儲存庫：[https://github.com/ChrisTorng/3d-phone-show7](https://github.com/ChrisTorng/3d-phone-show7)
-- 線上展示：[https://christorng.github.io/3d-phone-show7/](https://christorng.github.io/3d-phone-show7/)
+- 線上展示：[https://christorng.idv.tw/3d-phone-show7/](https://christorng.idv.tw/3d-phone-show7/)
 
 這是一個使用 Three.js 建立的 3D 手機模型展示平台，讓使用者可以互動式地瀏覽不同手機型號的 3D 模型。
 
